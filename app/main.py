@@ -18,10 +18,10 @@ def read_root():
 def read_items():
      return Items
 
-@app.get("/add/{name}/{price}")
-def add_item(name: str,price: float):
-    Items.append(Item(name,price))
-    return Item(name,price)
+@app.post("/add/")
+def add_item(item: Item):
+    Items.append(item)
+    return item
 
 
 
