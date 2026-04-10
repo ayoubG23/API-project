@@ -5,9 +5,10 @@ from fastapi.middleware.cors import CORSMiddleware
 class Item(BaseModel):
     name: str
     price: float
+    id:int
    
     
-Items = [Item(name="Kiwi", price=5), Item(name="Mango", price=8)]
+Items = [Item(name="Kiwi", price=5,id=1 ), Item(name="Mango", price=8,id=2 )]
 
 
 
@@ -31,8 +32,19 @@ def read_items():
 
 @app.post("/items/")
 def add_item(item: Item):
-    Items.append(item)
-    return item
+    newItem = Item(name=item.name, price=item.price, id=len(Items)+1)
+    Items.append(newItem)
+    return newItem
+
+@app.put("/items/")
+def change_item(item : Item):
+     for i in Items :
+          if i.id == item.id :
+               i.price=item.price 
+               i.name=item.name 
+               return i
+     return {"message": "item not found"}
+     
 
 
 
