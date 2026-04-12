@@ -1,7 +1,9 @@
 const nameInput=document.getElementById("name");
 const priceInput=document.getElementById("price");
+let currentEditId = null;
 
 document.getElementById("addButton").addEventListener("click",addItem);
+document.getElementById("saveButton").addEventListener("click", () => saveEdit(currentEditId));
 
 window.onload = function() {
     showItems();
@@ -23,21 +25,19 @@ function showItems(){
 
 function createListItem(item){
     let listItem = document.createElement("li");
-    listItem.setAttribute("id",item.id);
     listItem.textContent = `${item.name} : $${item.price}`;
     let editButton = document.createElement("button");
     editButton.textContent = "Edit";
-    editButton.addEventListener("click", () => editItem(item.id));
+    editButton.addEventListener("click", () => editItem(item));
     listItem.appendChild(editButton);
     return listItem;
 }
 
-function editItem(id){
+function editItem(item){
+    currentEditId = item.id;
+    document.getElementById("editName").value = item.name;
+    document.getElementById("editPrice").value = item.price;
     document.getElementById("overlay").classList.add("active");
-    document.getElementById("saveButton").addEventListener("click", () => saveEdit(id));
-    document.getElementById("cancelButton").addEventListener("click", () => {
-        document.getElementById("overlay").classList.remove("active");
-    });
 }
 
 function saveEdit(id){
