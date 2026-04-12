@@ -3,7 +3,6 @@ const priceInput=document.getElementById("price");
 
 document.getElementById("addButton").addEventListener("click",addItem);
 
-
 window.onload = function() {
     showItems();
 }
@@ -33,10 +32,17 @@ function createListItem(item){
     return listItem;
 }
 
-
 function editItem(id){
-    let name = nameInput.value.trim();
-    let price =priceInput.value.trim();
+    document.getElementById("overlay").classList.add("active");
+    document.getElementById("saveButton").addEventListener("click", () => saveEdit(id));
+    document.getElementById("cancelButton").addEventListener("click", () => {
+        document.getElementById("overlay").classList.remove("active");
+    });
+}
+
+function saveEdit(id){
+    let name = document.getElementById("editName").value.trim();
+    let price = document.getElementById("editPrice").value.trim();
     if(name && price){
         fetch("http://127.0.0.1:8000/items/",{
             method:"PUT",
@@ -45,8 +51,9 @@ function editItem(id){
         }).then(res=>res.json())
         .then(data=>{
             showItems();
-            nameInput.value ='';
-            priceInput.value ='';
+            document.getElementById("editName").value ='';
+            document.getElementById("editPrice").value ='';
+            document.getElementById("overlay").classList.remove("active");
         }).catch(error => console.error("Error editing item :" , error));
     }
 }
@@ -59,10 +66,6 @@ function addItem(){
     let name = nameInput.value.trim();
     let price =priceInput.value.trim();
     if(name && price){
-        
-
-        
-        
         fetch("http://127.0.0.1:8000/items/",{
             method:"POST",
             headers:{"Content-Type":"application/json"},

@@ -5,11 +5,22 @@
     <script src="script.js" defer></script>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <h3>API Project</h3>
     <input placeholder="name" type="text"  id="name">
     <input placeholder="price" type="number" id="price">
     <button id="addButton">Add</button>
     <ul id="ItemsList"></ul>
+    
+    
+    <div id="overlay">
+        <div id="editPanel" >
+            <input placeholder="name" type="text" id="editName">
+            <input placeholder="price" type="number" id="editPrice">
+            <button id="saveButton">Save</button>
+            <button id="cancelButton">Cancel</button>
+        </div>
+    </div>
 </body>
 </html>
