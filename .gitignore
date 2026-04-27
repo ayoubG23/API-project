@@ -1,0 +1,14 @@
+# Python cache
+__pycache__/
+*.pyc
+
+# Virtual environment (generally should be outside of the project directory, but just in case)
+venv/
+.env
+
+# OS files
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
