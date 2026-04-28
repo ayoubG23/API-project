@@ -1,3 +1,5 @@
+
+const BASE_URL = "https://api-project-fmr5.onrender.com";
 const nameInput=document.getElementById("name");
 const priceInput=document.getElementById("price");
 let currentEditId = null;
@@ -11,7 +13,7 @@ window.onload = function() {
 
 
 function showItems(){
-    fetch("http://127.0.0.1:8000/items/")
+    fetch(`${BASE_URL}/items/`)
         .then(res => res.json())
         .then(data => {
             const itemsList = document.getElementById("ItemsList");
@@ -44,7 +46,7 @@ function saveEdit(id){
     let name = document.getElementById("editName").value.trim();
     let price = document.getElementById("editPrice").value.trim();
     if(name && price){
-        fetch("http://127.0.0.1:8000/items/",{
+        fetch(`${BASE_URL}/items/`,{
             method:"PUT",
             headers:{"Content-Type":"application/json"},
             body:JSON.stringify({"name":name,"price":parseFloat(price),id})
@@ -66,7 +68,7 @@ function addItem(){
     let name = nameInput.value.trim();
     let price =priceInput.value.trim();
     if(name && price){
-        fetch("http://127.0.0.1:8000/items/",{
+        fetch(`${BASE_URL}/items/`,{
             method:"POST",
             headers:{"Content-Type":"application/json"},
             body:JSON.stringify({"name":name,"price":parseFloat(price),"id":0})
