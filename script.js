@@ -1,5 +1,8 @@
+const BASE_URL =
+  window.location.hostname === "localhost"// use localhost for development, render.com for production
+    ? "http://localhost:8000"
+    : "https://api-project-fmr5.onrender.com";
 
-const BASE_URL = "https://api-project-fmr5.onrender.com";
 const nameInput=document.getElementById("name");
 const priceInput=document.getElementById("price");
 let currentEditId = null;
