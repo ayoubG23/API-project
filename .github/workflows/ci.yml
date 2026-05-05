@@ -1,0 +1,33 @@
+name: CI Pipeline
+
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  # GitHub provides a Linux machine
+
+    steps:
+      # Step 1: download repo code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 2: install Python
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      # Step 3: install dependencies
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      # Step 4: basic check 
+      - name: Run basic check
+        run: python -c "import app.main"
+
+      # Step 5: build Docker image
+      - name: Build Docker image
+        run: docker build -t my-api .
