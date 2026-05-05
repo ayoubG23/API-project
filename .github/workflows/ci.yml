@@ -5,6 +5,7 @@ on:
   push:
     branches: [ main ]
 
+
 jobs:
   build:
     runs-on: ubuntu-latest  # GitHub provides a Linux machine
@@ -23,6 +24,9 @@ jobs:
       # Step 3: install dependencies
       - name: Install dependencies
         run: pip install -r requirements.txt
+      
+      - name: Run tests
+        run: pytest
 
       # Step 4: basic check 
       - name: Run basic check
