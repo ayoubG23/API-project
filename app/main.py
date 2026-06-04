@@ -16,7 +16,7 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],   # Allow all origins for development 
+    allow_origins=["https://api-project-fmr5.onrender.com"],   # Allow API 
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
