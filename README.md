@@ -12,6 +12,7 @@ Simple full-stack app with FastAPI backend and JS frontend.
 uvicorn app.main:app --reload
 
 ### With Docker
+
 docker build -t my-api .
 docker run -p 8000:8000 my-api
 
